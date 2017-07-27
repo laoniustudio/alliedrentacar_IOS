@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A46BA31E1F189AF500BEA4AC /* cameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46BA31D1F189AF500BEA4AC /* cameraVC.swift */; };
 		A4F8800F1F0E198700FF0EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8800E1F0E198700FF0EEC /* AppDelegate.swift */; };
-		A4F880111F0E198700FF0EEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F880101F0E198700FF0EEC /* ViewController.swift */; };
+		A4F880111F0E198700FF0EEC /* loginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F880101F0E198700FF0EEC /* loginVC.swift */; };
 		A4F880141F0E198700FF0EEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4F880121F0E198700FF0EEC /* Main.storyboard */; };
 		A4F880161F0E198700FF0EEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4F880151F0E198700FF0EEC /* Assets.xcassets */; };
 		A4F880191F0E198700FF0EEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4F880171F0E198700FF0EEC /* LaunchScreen.storyboard */; };
 		A4F880241F0E198700FF0EEC /* AlliedRentACarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F880231F0E198700FF0EEC /* AlliedRentACarUITests.swift */; };
+		A4F8802F1F148C3D00FF0EEC /* dashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8802E1F148C3D00FF0EEC /* dashboardVC.swift */; };
+		A4F880311F148C9D00FF0EEC /* loginVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F880301F148C9D00FF0EEC /* loginVC2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,9 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A46BA31D1F189AF500BEA4AC /* cameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cameraVC.swift; sourceTree = "<group>"; };
 		A4F8800B1F0E198700FF0EEC /* AlliedRentACar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlliedRentACar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4F8800E1F0E198700FF0EEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A4F880101F0E198700FF0EEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A4F880101F0E198700FF0EEC /* loginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginVC.swift; sourceTree = "<group>"; };
 		A4F880131F0E198700FF0EEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A4F880151F0E198700FF0EEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4F880181F0E198700FF0EEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +40,8 @@
 		A4F8801F1F0E198700FF0EEC /* AlliedRentACarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlliedRentACarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4F880231F0E198700FF0EEC /* AlliedRentACarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedRentACarUITests.swift; sourceTree = "<group>"; };
 		A4F880251F0E198700FF0EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4F8802E1F148C3D00FF0EEC /* dashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dashboardVC.swift; sourceTree = "<group>"; };
+		A4F880301F148C9D00FF0EEC /* loginVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginVC2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +84,14 @@
 			isa = PBXGroup;
 			children = (
 				A4F8800E1F0E198700FF0EEC /* AppDelegate.swift */,
-				A4F880101F0E198700FF0EEC /* ViewController.swift */,
+				A4F880101F0E198700FF0EEC /* loginVC.swift */,
 				A4F880121F0E198700FF0EEC /* Main.storyboard */,
 				A4F880151F0E198700FF0EEC /* Assets.xcassets */,
 				A4F880171F0E198700FF0EEC /* LaunchScreen.storyboard */,
 				A4F8801A1F0E198700FF0EEC /* Info.plist */,
+				A4F8802E1F148C3D00FF0EEC /* dashboardVC.swift */,
+				A4F880301F148C9D00FF0EEC /* loginVC2.swift */,
+				A46BA31D1F189AF500BEA4AC /* cameraVC.swift */,
 			);
 			path = AlliedRentACar;
 			sourceTree = "<group>";
@@ -146,6 +155,7 @@
 				TargetAttributes = {
 					A4F8800A1F0E198700FF0EEC = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = JUTPFCGNCS;
 						ProvisioningStyle = Automatic;
 					};
 					A4F8801E1F0E198700FF0EEC = {
@@ -199,8 +209,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4F880111F0E198700FF0EEC /* ViewController.swift in Sources */,
+				A4F880111F0E198700FF0EEC /* loginVC.swift in Sources */,
+				A4F880311F148C9D00FF0EEC /* loginVC2.swift in Sources */,
+				A46BA31E1F189AF500BEA4AC /* cameraVC.swift in Sources */,
 				A4F8800F1F0E198700FF0EEC /* AppDelegate.swift in Sources */,
+				A4F8802F1F148C3D00FF0EEC /* dashboardVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +354,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JUTPFCGNCS;
 				INFOPLIST_FILE = AlliedRentACar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.laoniustudio.AlliedRentACar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -353,7 +368,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JUTPFCGNCS;
 				INFOPLIST_FILE = AlliedRentACar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.laoniustudio.AlliedRentACar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -406,6 +423,7 @@
 				A4F8802A1F0E198700FF0EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A4F8802B1F0E198700FF0EEC /* Build configuration list for PBXNativeTarget "AlliedRentACarUITests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +432,7 @@
 				A4F8802D1F0E198700FF0EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
