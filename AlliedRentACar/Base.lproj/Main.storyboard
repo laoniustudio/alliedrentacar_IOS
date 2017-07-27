@@ -178,6 +178,9 @@
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="vk9-ao-LNC" kind="show" id="lJu-e1-ulf"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vt-9d-zAy">
                                         <rect key="frame" x="261" y="165" width="140" height="23"/>
@@ -193,9 +196,6 @@
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="ugD-7B-62a" kind="show" id="K3T-eY-6Q7"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -285,7 +285,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3g-eK-UYT">
-                                <rect key="frame" x="0.0" y="64" width="414" height="1086"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="1130"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0UU-hN-xGX">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
@@ -681,7 +681,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2390.217391304348" y="128.98550724637681"/>
+            <point key="canvasLocation" x="1486" y="136"/>
         </scene>
         <!--cameraVC-->
         <scene sceneID="Kmg-n2-wen">
@@ -698,7 +698,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9c-7n-SBP" userLabel="cameraView">
                                 <rect key="frame" x="0.0" y="0.0" width="626" height="414"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frontOverlay" translatesAutoresizingMaskIntoConstraints="NO" id="nt3-K5-5ma">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="driveRearOverlay" translatesAutoresizingMaskIntoConstraints="NO" id="nt3-K5-5ma">
                                         <rect key="frame" x="0.0" y="0.0" width="626" height="414"/>
                                     </imageView>
                                 </subviews>
@@ -740,12 +740,26 @@
                                             <action selector="cameraButtonRelease:" destination="qpw-o0-nBJ" eventType="touchUpInside" id="CPV-Dv-nsv"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsd-jE-3xq">
+                                        <rect key="frame" x="20" y="316" width="71" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="71" id="NMg-N7-C9d"/>
+                                            <constraint firstAttribute="height" constant="30" id="Vc1-bF-jlp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="qpw-o0-nBJ" eventType="touchUpInside" id="2yu-yd-PlQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="tsd-jE-3xq" firstAttribute="centerX" secondItem="egN-ng-ugd" secondAttribute="centerX" id="3iY-Wr-Fnh"/>
                                     <constraint firstItem="WpL-MT-Vqv" firstAttribute="centerX" secondItem="egN-ng-ugd" secondAttribute="centerX" id="54j-5C-1mU"/>
                                     <constraint firstItem="2Up-Rg-a7L" firstAttribute="centerX" secondItem="egN-ng-ugd" secondAttribute="centerX" id="9Wz-e3-OQI"/>
                                     <constraint firstItem="2Up-Rg-a7L" firstAttribute="top" secondItem="egN-ng-ugd" secondAttribute="top" constant="50" id="Hgd-KJ-zU7"/>
                                     <constraint firstItem="WpL-MT-Vqv" firstAttribute="centerY" secondItem="egN-ng-ugd" secondAttribute="centerY" id="X5I-3M-eTj"/>
+                                    <constraint firstAttribute="bottom" secondItem="tsd-jE-3xq" secondAttribute="bottom" constant="68" id="hN1-sB-bHc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -761,35 +775,18 @@
                             <constraint firstItem="y9c-7n-SBP" firstAttribute="top" secondItem="0yG-NS-TXP" secondAttribute="top" id="xGL-Cm-Nsr"/>
                         </constraints>
                     </view>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="camerView" destination="y9c-7n-SBP" id="FWi-dp-vWm"/>
                         <outlet property="cameraButton" destination="WpL-MT-Vqv" id="Lzd-fv-S5c"/>
+                        <outlet property="imageOverlay" destination="nt3-K5-5ma" id="0hp-7a-Mbu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQA-oI-EK8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3090" y="232"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="JTX-nV-Rzd">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ugD-7B-62a" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HFR-IH-A9B">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="vk9-ao-LNC" kind="relationship" relationship="rootViewController" id="aVd-Z9-7aE"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hCU-OY-DQs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1610" y="137"/>
+            <point key="canvasLocation" x="2097.554347826087" y="134.78260869565219"/>
         </scene>
     </scenes>
     <resources>
@@ -804,7 +801,7 @@
         <image name="car_passFront" width="128" height="128"/>
         <image name="car_passRear" width="128" height="128"/>
         <image name="car_rear" width="128" height="128"/>
-        <image name="frontOverlay" width="619" height="414"/>
+        <image name="driveRearOverlay" width="619" height="414"/>
         <image name="mail" width="64" height="64"/>
         <image name="mainPic" width="300" height="175"/>
         <image name="unlocked" width="64" height="64"/>

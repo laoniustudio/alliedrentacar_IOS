@@ -13,6 +13,9 @@ class cameraVC: UIViewController {
     
     @IBOutlet weak var camerView: UIView!
     @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var imageOverlay: UIImageView!
+    
+    var overlayImage : UIImage?
     
     let captureSession = AVCaptureSession()
     var captureDevice : AVCaptureDevice?
@@ -20,7 +23,8 @@ class cameraVC: UIViewController {
     var photoOutput = AVCapturePhotoOutput()
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        //set overlay image
+        imageOverlay.image = overlayImage
             }
     
     override func viewDidLoad() {
@@ -34,11 +38,18 @@ class cameraVC: UIViewController {
         runCaptureSession()
 
         // Do any additional setup after loading the view.
+        
     }
 
     override var prefersStatusBarHidden: Bool{
         return true
     }
+    
+    //lock orientation to landscapeRight
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeRight
+    }
+
     
     // initial camera staff
     func setupCaptureSession(){
@@ -80,7 +91,7 @@ class cameraVC: UIViewController {
         captureSession.startRunning()
     }
 
-   
+   //camera button action
     @IBAction func cameraButtonPressed(_ sender: UIButton) {
          cameraButton.transform=CGAffineTransform(scaleX: 1.1, y: 1.1)
     }
@@ -90,9 +101,10 @@ class cameraVC: UIViewController {
         cameraButton.transform=CGAffineTransform(scaleX: 1, y: 1)
     }
     
-    //lock orientation to portrait
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscape
+    //cancel button action
+    
+    @IBAction func cancelPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
-
+    
 }
