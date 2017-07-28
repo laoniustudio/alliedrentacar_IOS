@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -108,6 +108,9 @@
                             <constraint firstItem="9G6-fy-DMl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qmk-IL-rnG"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -262,6 +265,9 @@
                             <constraint firstItem="uDd-dv-zrv" firstAttribute="leading" secondItem="9mM-IF-Dz1" secondAttribute="leading" id="ykJ-qX-nSm"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="centerView" destination="9mM-IF-Dz1" id="NaI-Af-L4B"/>
                         <outlet property="contractButton" destination="cPA-0B-UWc" id="q7G-7s-cRM"/>
@@ -285,7 +291,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3g-eK-UYT">
-                                <rect key="frame" x="0.0" y="20" width="414" height="1130"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0UU-hN-xGX">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
@@ -614,6 +620,8 @@
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="v3o-Mv-zTx"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Unit Number" id="l0o-nY-qgQ"/>
                     </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="1150"/>
@@ -640,7 +648,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2tf-OR-vvX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="VjC-YK-pGp" userLabel="dashboarTGR">
+                <tapGestureRecognizer id="VjC-YK-pGp" userLabel="dashboardTGR">
                     <connections>
                         <action selector="imageClicked:" destination="vk9-ao-LNC" id="yHW-AT-KbQ"/>
                     </connections>
@@ -698,7 +706,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9c-7n-SBP" userLabel="cameraView">
                                 <rect key="frame" x="0.0" y="0.0" width="626" height="414"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="driveRearOverlay" translatesAutoresizingMaskIntoConstraints="NO" id="nt3-K5-5ma">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nt3-K5-5ma">
                                         <rect key="frame" x="0.0" y="0.0" width="626" height="414"/>
                                     </imageView>
                                 </subviews>
@@ -776,17 +784,82 @@
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="camerView" destination="y9c-7n-SBP" id="FWi-dp-vWm"/>
+                        <outlet property="camerView" destination="y9c-7n-SBP" id="CzL-ml-WJa"/>
                         <outlet property="cameraButton" destination="WpL-MT-Vqv" id="Lzd-fv-S5c"/>
                         <outlet property="imageOverlay" destination="nt3-K5-5ma" id="0hp-7a-Mbu"/>
+                        <outlet property="nameText" destination="2Up-Rg-a7L" id="IqL-bH-plH"/>
+                        <segue destination="6u4-iK-4bk" kind="show" identifier="showPreview" id="YAx-Zm-CDg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQA-oI-EK8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2097.554347826087" y="134.78260869565219"/>
+        </scene>
+        <!--Photo PreviewVC-->
+        <scene sceneID="T9m-vw-6B0">
+            <objects>
+                <viewController id="6u4-iK-4bk" customClass="photoPreviewVC" customModule="AlliedRentACar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VRU-S8-pg5"/>
+                        <viewControllerLayoutGuide type="bottom" id="n3T-1z-7jI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ebu-Oz-3IE">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cJY-Yd-v4n">
+                                <rect key="frame" x="0.0" y="0.0" width="736" height="352"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UZi-rG-Ebl">
+                                <rect key="frame" x="20" y="352" width="696" height="62"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soy-fh-LvM">
+                                        <rect key="frame" x="0.0" y="0.0" width="232" height="62"/>
+                                        <state key="normal" title="Cancel"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2x-46-Ajp">
+                                        <rect key="frame" x="232" y="0.0" width="232" height="62"/>
+                                        <state key="normal" title="Save"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBb-Yt-Ifu">
+                                        <rect key="frame" x="464" y="0.0" width="232" height="62"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                        <state key="normal" title="Retake"/>
+                                        <connections>
+                                            <action selector="retakeButtonPressed:" destination="6u4-iK-4bk" eventType="touchUpInside" id="8Qg-K4-9oI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cJY-Yd-v4n" firstAttribute="top" secondItem="VRU-S8-pg5" secondAttribute="bottom" id="3FF-SL-qOC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UZi-rG-Ebl" secondAttribute="trailing" id="AIX-gJ-e0d"/>
+                            <constraint firstItem="UZi-rG-Ebl" firstAttribute="top" secondItem="cJY-Yd-v4n" secondAttribute="bottom" id="Do5-pV-7mu"/>
+                            <constraint firstItem="n3T-1z-7jI" firstAttribute="top" secondItem="UZi-rG-Ebl" secondAttribute="bottom" id="IkH-OD-uAx"/>
+                            <constraint firstAttribute="trailing" secondItem="cJY-Yd-v4n" secondAttribute="trailing" id="Isp-bS-owH"/>
+                            <constraint firstItem="cJY-Yd-v4n" firstAttribute="leading" secondItem="ebu-Oz-3IE" secondAttribute="leading" id="Ywt-em-BIr"/>
+                            <constraint firstItem="UZi-rG-Ebl" firstAttribute="leading" secondItem="ebu-Oz-3IE" secondAttribute="leadingMargin" id="a9U-RH-dPm"/>
+                            <constraint firstItem="cJY-Yd-v4n" firstAttribute="height" secondItem="ebu-Oz-3IE" secondAttribute="height" multiplier="0.85" id="ggt-Te-ssD"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="captureImage" destination="cJY-Yd-v4n" id="8mT-aA-7eW"/>
+                        <outlet property="retake" destination="RBb-Yt-Ifu" id="eCN-B7-k5Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ahk-UG-cws" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3002.898550724638" y="134.5108695652174"/>
         </scene>
     </scenes>
     <resources>
@@ -801,7 +874,6 @@
         <image name="car_passFront" width="128" height="128"/>
         <image name="car_passRear" width="128" height="128"/>
         <image name="car_rear" width="128" height="128"/>
-        <image name="driveRearOverlay" width="619" height="414"/>
         <image name="mail" width="64" height="64"/>
         <image name="mainPic" width="300" height="175"/>
         <image name="unlocked" width="64" height="64"/>

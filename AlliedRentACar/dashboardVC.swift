@@ -34,7 +34,10 @@ class dashboardVC: UIViewController,UIImagePickerControllerDelegate,UINavigation
     var imagePicker = UIImagePickerController()
     var currentImageView : UIImageView?
     var morePicdic : [UIImage] = []
-    var imageOverlay : UIImage?
+    var morePicCount = 1
+    //for cameraVC
+    var imageOverlay : UIImage!
+    var nameText = ""
     
     
     override func viewDidLoad() {
@@ -70,54 +73,60 @@ class dashboardVC: UIViewController,UIImagePickerControllerDelegate,UINavigation
     
     // image click action
     @IBAction func imageClicked(_ sender: UITapGestureRecognizer) {
-                
+        switchUIImageView(sender)
+    }
+    
+    //switch between UIimageview
+    func switchUIImageView(_ sender: UITapGestureRecognizer){
         switch sender.view!.tag {
         case 1:
             currentImageView = dashboardImg
+            nameText = "Dash board"
         case 2:
             currentImageView = frontImg
             imageOverlay = #imageLiteral(resourceName: "frontOverlay")
+            nameText = "Front"
         case 3:
             currentImageView = passFrontImg
             imageOverlay = #imageLiteral(resourceName: "passFrontOverlay")
+            nameText = "Pass Front"
         case 4:
             currentImageView = passRearImg
             imageOverlay = #imageLiteral(resourceName: "passRearOverlay")
+            nameText = "Pass Rear"
         case 5:
             currentImageView = rearImg
             imageOverlay = #imageLiteral(resourceName: "rearOverlay")
+            nameText = "Rear"
         case 6:
             currentImageView = driveRearImg
             imageOverlay = #imageLiteral(resourceName: "driveRearOverlay")
+            nameText = "Drive Rear"
         case 7:
             currentImageView = driveFrontImg
             imageOverlay = #imageLiteral(resourceName: "driveFrontOverlay")
+            nameText = "Drive Front"
         case 8:
             currentImageView = morePicImg
-            
+            nameText = "More Pic\(morePicCount)"
         default:
             print("defult")
         }
-        performSegue(withIdentifier: "showCameraVC", sender: nil)
-        
-        
+        myPerformSegue()
     }
     // prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextVC = segue.destination as! cameraVC
         nextVC.overlayImage  = imageOverlay
+        nextVC.previousText = nameText
+        nextVC.previousVC = self
+        
     }
-    // imagePickerController
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let selectedPic = info[UIImagePickerControllerOriginalImage] as! UIImage
-        if currentImageView == morePicImg{
-            morePicdic.append(selectedPic)
-        }else{
-            currentImageView?.image = selectedPic
-        }
-        dismiss(animated: true, completion: nil)
+    // perform Segue
+    func myPerformSegue(){
+        performSegue(withIdentifier: "showCameraVC", sender: nil)
     }
-    
+        
     override var prefersStatusBarHidden: Bool{
         return true
     }
