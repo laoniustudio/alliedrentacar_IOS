@@ -10,15 +10,24 @@ import UIKit
 
 class photoPreviewVC: UIViewController {
 
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var retake: UIButton!
     @IBOutlet weak var captureImage: UIImageView!
     var previewImage : UIImage?
+    var previousVC = dashboardVC()
+    var tagNumber = 0
+    
+    var dic = AllDictionary()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //show image
+        
         captureImage.image = previewImage
-        //retake.transform = retake.transform.rotated(by: CGFloat(Double.pi/2))
+        captureImage.image = UIImage(cgImage: (captureImage.image?.cgImage!)!, scale: CGFloat(1.0), orientation: .right)
+        retake.transform = retake.transform.rotated(by: CGFloat(Double.pi/2))
+        cancelButton.transform = cancelButton.transform.rotated(by: CGFloat(Double.pi/2))
+        
     }
 
     //lock orientation to landscapeRightDouble.p
@@ -28,9 +37,27 @@ class photoPreviewVC: UIViewController {
 
     //retake
     @IBAction func retakeButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        // get ref of next VC
+        let viewController:cameraVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "cameraStory") as UIViewController as! cameraVC
+        //set next VC parameters
+        
+        viewController.previousVC = previousVC
+        viewController.flag = 1
+        viewController.photoVC = self
+        viewController.tagNumber = tagNumber
+        
+        self.present(viewController, animated: true, completion: nil)
+
     }
     
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+  
+    // hide status bar
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
 
     /*
     // MARK: - Navigation

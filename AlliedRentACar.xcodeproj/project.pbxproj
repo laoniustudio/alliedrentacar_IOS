@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A46BA31E1F189AF500BEA4AC /* cameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46BA31D1F189AF500BEA4AC /* cameraVC.swift */; };
 		A4D717481F2AFFB00007AA85 /* photoPreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D717471F2AFFB00007AA85 /* photoPreviewVC.swift */; };
+		A4D717501F2D25BC0007AA85 /* dic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D7174F1F2D25BC0007AA85 /* dic.swift */; };
 		A4F8800F1F0E198700FF0EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8800E1F0E198700FF0EEC /* AppDelegate.swift */; };
 		A4F880111F0E198700FF0EEC /* loginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F880101F0E198700FF0EEC /* loginVC.swift */; };
 		A4F880141F0E198700FF0EEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4F880121F0E198700FF0EEC /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		A46BA31D1F189AF500BEA4AC /* cameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cameraVC.swift; sourceTree = "<group>"; };
 		A4D717471F2AFFB00007AA85 /* photoPreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoPreviewVC.swift; sourceTree = "<group>"; };
+		A4D7174F1F2D25BC0007AA85 /* dic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dic.swift; sourceTree = "<group>"; };
 		A4F8800B1F0E198700FF0EEC /* AlliedRentACar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlliedRentACar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4F8800E1F0E198700FF0EEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4F880101F0E198700FF0EEC /* loginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginVC.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				A4F880301F148C9D00FF0EEC /* loginVC2.swift */,
 				A46BA31D1F189AF500BEA4AC /* cameraVC.swift */,
 				A4D717471F2AFFB00007AA85 /* photoPreviewVC.swift */,
+				A4D7174F1F2D25BC0007AA85 /* dic.swift */,
 			);
 			path = AlliedRentACar;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				A4F880311F148C9D00FF0EEC /* loginVC2.swift in Sources */,
 				A46BA31E1F189AF500BEA4AC /* cameraVC.swift in Sources */,
 				A4F8800F1F0E198700FF0EEC /* AppDelegate.swift in Sources */,
+				A4D717501F2D25BC0007AA85 /* dic.swift in Sources */,
 				A4D717481F2AFFB00007AA85 /* photoPreviewVC.swift in Sources */,
 				A4F8802F1F148C3D00FF0EEC /* dashboardVC.swift in Sources */,
 			);

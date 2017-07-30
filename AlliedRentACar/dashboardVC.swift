@@ -7,8 +7,7 @@
 //
 
 import UIKit
-
-class dashboardVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class dashboardVC: UIViewController{
 
     @IBOutlet weak var unitnumber: UIBarButtonItem!
     
@@ -20,6 +19,7 @@ class dashboardVC: UIViewController,UIImagePickerControllerDelegate,UINavigation
     @IBOutlet weak var driveRearImg: UIImageView!
     @IBOutlet weak var passRearImg: UIImageView!
     @IBOutlet weak var frontImg: UIImageView!
+    @IBOutlet weak var mainImg: UIImageView!
     
     @IBOutlet weak var frontView: UIView!
     @IBOutlet weak var dashboarView: UIView!
@@ -31,22 +31,19 @@ class dashboardVC: UIViewController,UIImagePickerControllerDelegate,UINavigation
     @IBOutlet weak var driveFrontView: UIView!
     @IBOutlet weak var mainPicView: UIView!
     
-    var imagePicker = UIImagePickerController()
+    
     var currentImageView : UIImageView?
     var morePicdic : [UIImage] = []
-    var morePicCount = 1
-    //for cameraVC
-    var imageOverlay : UIImage!
-    var nameText = ""
+
+    @IBOutlet weak var morePicCount: UILabel!
     
+    var dic = AllDictionary()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set the unit number color
-        unitnumber.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blue], for: .disabled)
-        // for camera
-        imagePicker.delegate = self
+       
+        
         
         // UIimageView add shadows
         addshadow(myView: frontView)
@@ -65,68 +62,79 @@ class dashboardVC: UIViewController,UIImagePickerControllerDelegate,UINavigation
     //lock orientation to portrait
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
+        
     }
     
-    override var shouldAutorotate: Bool {
-        return false
-    }
-    
+        
     // image click action
     @IBAction func imageClicked(_ sender: UITapGestureRecognizer) {
-        switchUIImageView(sender)
+        switchUIImageView(number: sender.view!.tag)
+        
+        // perform Segue
+        if dic.dashboardImageDic .contains((currentImageView?.image)!) {
+            performSegue(withIdentifier: "showCameraVC", sender: nil)
+        }else{
+            performSegue(withIdentifier: "showPreviewVC", sender: nil)
+        }
+        
+        
     }
     
+    
+    
     //switch between UIimageview
-    func switchUIImageView(_ sender: UITapGestureRecognizer){
-        switch sender.view!.tag {
+    func switchUIImageView(number:Int){
+        switch number {
         case 1:
             currentImageView = dashboardImg
-            nameText = "Dash board"
         case 2:
             currentImageView = frontImg
-            imageOverlay = #imageLiteral(resourceName: "frontOverlay")
-            nameText = "Front"
         case 3:
             currentImageView = passFrontImg
-            imageOverlay = #imageLiteral(resourceName: "passFrontOverlay")
-            nameText = "Pass Front"
         case 4:
             currentImageView = passRearImg
-            imageOverlay = #imageLiteral(resourceName: "passRearOverlay")
-            nameText = "Pass Rear"
         case 5:
             currentImageView = rearImg
-            imageOverlay = #imageLiteral(resourceName: "rearOverlay")
-            nameText = "Rear"
         case 6:
             currentImageView = driveRearImg
-            imageOverlay = #imageLiteral(resourceName: "driveRearOverlay")
-            nameText = "Drive Rear"
         case 7:
             currentImageView = driveFrontImg
-            imageOverlay = #imageLiteral(resourceName: "driveFrontOverlay")
-            nameText = "Drive Front"
         case 8:
             currentImageView = morePicImg
-            nameText = "More Pic\(morePicCount)"
+        case 9:
+            currentImageView = mainImg
+            
         default:
             print("defult")
         }
-        myPerformSegue()
+        
+        
     }
     // prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCameraVC"{
         let nextVC = segue.destination as! cameraVC
-        nextVC.overlayImage  = imageOverlay
-        nextVC.previousText = nameText
+        nextVC.tagNumber  = ((currentImageView?.tag)! - 1) //as loop dic from 0, so need -1
         nextVC.previousVC = self
+            // main pic call cameraVC
+            if nextVC.tagNumber >= 7 {
+                nextVC.flag = 1
+                if nextVC.tagNumber == 7 {
+                    nextVC.morePicCount = morePicdic.count+1
+                }
+            }
+        }
+        if segue.identifier == "showPreviewVC"{
+            let nextVC2 = segue.destination as! photoPreviewVC
+            nextVC2.previewImage = currentImageView?.image
+            nextVC2.previousVC = self
+            nextVC2.tagNumber = ((currentImageView?.tag)! - 1)
+            
+        }
+
         
     }
-    // perform Segue
-    func myPerformSegue(){
-        performSegue(withIdentifier: "showCameraVC", sender: nil)
-    }
-        
+    
     override var prefersStatusBarHidden: Bool{
         return true
     }

@@ -15,11 +15,17 @@ class cameraVC: UIViewController {
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var imageOverlay: UIImageView!
     @IBOutlet weak var nameText: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     
-    var overlayImage : UIImage?
-    var previousText : String?
+    var tagNumber : Int = 0 // current selected uiimage tag number
     var captureImage : UIImage?
     var previousVC = dashboardVC()
+    var dic = AllDictionary()
+    var finalImage : UIImage?
+    var cameraView : cameraVC?
+    var flag = 0 //to check if the viewController called by cameraVC(0) or photoPreviewVC and dashboard.mainPic(1) 
+    var photoVC = photoPreviewVC()
+    var morePicCount = 1
     
     
     let captureSession = AVCaptureSession()
@@ -28,14 +34,23 @@ class cameraVC: UIViewController {
     var photoOutput = AVCapturePhotoOutput()
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        cancelButton.transform = cancelButton.transform.rotated(by: CGFloat(Double.pi/2))
+        nameText.transform = nameText.transform.rotated(by: CGFloat(Double.pi/2))
+        cameraButton.transform = cameraButton.transform.rotated(by: CGFloat(Double.pi/2))
         
         //set overlay image and text
-        if previousText == "Dashboard" ||  (previousText?.contains("More Pic"))!{
-            imageOverlay.image = nil
+        if tagNumber>=7 {//called from main pic taped,or more pic
+            if tagNumber == 7{
+                nameText.text = dic.nameTextDic[tagNumber]+"\(morePicCount)"//set more pic name
+                
+            }else{
+                nameText.text = dic.nameTextDic[tagNumber]
+            }
         }else{
-        imageOverlay.image = overlayImage
-        }
+            imageOverlay.image = dic.imageOverlayDic[tagNumber]
+            nameText.text = dic.nameTextDic[tagNumber]
+            }
+        
     }
     
     override func viewDidLoad() {
@@ -49,7 +64,15 @@ class cameraVC: UIViewController {
         runCaptureSession()
 
         // Do any additional setup after loading the view.
-        nameText.text = previousText
+        if flag == 0 {
+            if cameraView != nil {
+                
+                cameraView?.dismiss(animated: false, completion: nil)
+            }
+
+        }else{
+            photoVC.dismiss(animated: false, completion: nil)
+        }
         
     }
 
@@ -57,11 +80,7 @@ class cameraVC: UIViewController {
         return true
     }
     
-    //lock orientation to landscapeRight
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscapeRight
-    }
-
+   
     
     // initial camera staff
     func setupCaptureSession(){
@@ -94,7 +113,7 @@ class cameraVC: UIViewController {
     func setupPreviewLayer(){
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.landscapeRight
+        previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.portrait
         previewLayer.frame = camerView.bounds
         camerView.layer.insertSublayer(previewLayer, at: 0)
     }
@@ -105,43 +124,69 @@ class cameraVC: UIViewController {
 
    //camera button action
     @IBAction func cameraButtonPressed(_ sender: UIButton) {
-         cameraButton.transform=CGAffineTransform(scaleX: 1.1, y: 1.1)
+        cameraButton.transform=CGAffineTransform(scaleX: 1.1, y: 1.1)
+        cameraButton.transform = cameraButton.transform.rotated(by: CGFloat(Double.pi/2))
         photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self as AVCapturePhotoCaptureDelegate)
     }
     
     
     @IBAction func cameraButtonRelease(_ sender: UIButton) {
         cameraButton.transform=CGAffineTransform(scaleX: 1, y: 1)
+        cameraButton.transform = cameraButton.transform.rotated(by: CGFloat(Double.pi/2))
     }
     
     //cancel button action
     
     @IBAction func cancelPressed(_ sender: Any) {
+        
         dismiss(animated: true, completion: nil)
-    }
-    // prepare segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextVC = segue.destination as! photoPreviewVC
-        nextVC.previewImage  = sender as? UIImage
+
     }
     
+    // present new VC
+    func presentNextCameraVC(){
+        if tagNumber >= 6 {
+            dismiss(animated: true, completion: nil)
+        }else{
+            // get ref of next VC
+            let viewController:cameraVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "cameraStory") as UIViewController as! cameraVC
+            //set next VC parameters
+            viewController.tagNumber = tagNumber + 1
+            viewController.previousVC = previousVC
+            viewController.cameraView = self
+            
+            
+            self.present(viewController, animated: true, completion: nil)
+        }
     }
+}
 //capture photos
 extension cameraVC:AVCapturePhotoCaptureDelegate{
     func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         
-        if let unwrappedError = error {
-            print(unwrappedError.localizedDescription)
-        }else{
+        
         if let _ = photoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer) {
             if let preImage = UIImage(data:dataImage){
+                
                 // rotate image to lanscape
-                let finalImage = UIImage(cgImage: (preImage.cgImage!), scale: CGFloat(1.0), orientation: .up)
+                finalImage = UIImage(cgImage: (preImage.cgImage!), scale: CGFloat(1.0), orientation: .up)
+                
+                
+                if flag == 0 {
                 //set image
+                previousVC.switchUIImageView(number: tagNumber+1)//change currentImageView by tag
                 previousVC.currentImageView?.image = finalImage
-                
-                
-            }
+                presentNextCameraVC()
+                }else{
+                    //set image
+                    if tagNumber == 7 {
+                        previousVC.morePicdic.append(finalImage!)
+                        previousVC.morePicCount.text = "\(previousVC.morePicdic.count)"
+                    }else{
+                        previousVC.currentImageView?.image = finalImage
+                    }
+                    dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
