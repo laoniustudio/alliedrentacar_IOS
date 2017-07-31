@@ -34,6 +34,12 @@ class cameraVC: UIViewController {
     var photoOutput = AVCapturePhotoOutput()
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        
+        //hide nav bar
+        
+        self.navigationController?.isNavigationBarHidden = true
+        //rotate button
         cancelButton.transform = cancelButton.transform.rotated(by: CGFloat(Double.pi/2))
         nameText.transform = nameText.transform.rotated(by: CGFloat(Double.pi/2))
         cameraButton.transform = cameraButton.transform.rotated(by: CGFloat(Double.pi/2))
@@ -52,6 +58,11 @@ class cameraVC: UIViewController {
             }
         
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        //show nav bar
+        self.navigationController?.isNavigationBarHidden = false
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,16 +74,6 @@ class cameraVC: UIViewController {
         setupPreviewLayer()
         runCaptureSession()
 
-        // Do any additional setup after loading the view.
-        if flag == 0 {
-            if cameraView != nil {
-                
-                cameraView?.dismiss(animated: false, completion: nil)
-            }
-
-        }else{
-            photoVC.dismiss(animated: false, completion: nil)
-        }
         
     }
 
@@ -138,15 +139,16 @@ class cameraVC: UIViewController {
     //cancel button action
     
     @IBAction func cancelPressed(_ sender: Any) {
-        
-        dismiss(animated: true, completion: nil)
+        cameraView?.navigationController?.popToRootViewController(animated: false)
+        self.navigationController?.popToRootViewController(animated: true)
 
     }
     
     // present new VC
     func presentNextCameraVC(){
+        
         if tagNumber >= 6 {
-            dismiss(animated: true, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
         }else{
             // get ref of next VC
             let viewController:cameraVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "cameraStory") as UIViewController as! cameraVC
@@ -154,9 +156,11 @@ class cameraVC: UIViewController {
             viewController.tagNumber = tagNumber + 1
             viewController.previousVC = previousVC
             viewController.cameraView = self
+          
             
             
-            self.present(viewController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
         }
     }
 }
@@ -180,12 +184,17 @@ extension cameraVC:AVCapturePhotoCaptureDelegate{
                 }else{
                     //set image
                     if tagNumber == 7 {
+                        //more pic
                         previousVC.morePicdic.append(finalImage!)
                         previousVC.morePicCount.text = "\(previousVC.morePicdic.count)"
+                        self.navigationController?.popToRootViewController(animated: true)
                     }else{
+                        // retake
                         previousVC.currentImageView?.image = finalImage
+                        photoVC.navigationController?.popToRootViewController(animated: false)
+                        self.navigationController?.popToRootViewController(animated: true)
                     }
-                    dismiss(animated: true, completion: nil)
+                    
                 }
             }
         }

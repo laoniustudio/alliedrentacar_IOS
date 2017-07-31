@@ -19,6 +19,14 @@ class photoPreviewVC: UIViewController {
     
     var dic = AllDictionary()
     
+    //show nav bar
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        //hide nav bar
+        self.navigationController?.isNavigationBarHidden = false
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         //show image
@@ -46,27 +54,17 @@ class photoPreviewVC: UIViewController {
         viewController.photoVC = self
         viewController.tagNumber = tagNumber
         
-        self.present(viewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(viewController, animated: true)
 
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
   
     // hide status bar
     override var prefersStatusBarHidden: Bool{
         return true
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

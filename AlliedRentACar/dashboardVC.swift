@@ -31,6 +31,7 @@ class dashboardVC: UIViewController{
     @IBOutlet weak var driveFrontView: UIView!
     @IBOutlet weak var mainPicView: UIView!
     
+    @IBOutlet weak var contractNo: UIBarButtonItem!
     
     var currentImageView : UIImageView?
     var morePicdic : [UIImage] = []
@@ -41,9 +42,8 @@ class dashboardVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
-        
+        //set contractNo color
+        contractNo.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.blue], for: .normal)
         
         // UIimageView add shadows
         addshadow(myView: frontView)
@@ -147,5 +147,8 @@ class dashboardVC: UIViewController{
         myView.layer.shadowOpacity = 0.3
     }
     
+    @IBAction func barCancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
